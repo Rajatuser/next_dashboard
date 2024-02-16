@@ -115,7 +115,7 @@ const Register = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm Password</label>
                         <input
                             type="password"
                             id="confirmPassword"

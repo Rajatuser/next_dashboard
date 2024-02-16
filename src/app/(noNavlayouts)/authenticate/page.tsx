@@ -1,54 +1,13 @@
-'use client'
+import Authenticate from '@/components/authentication/authenticate'
+import { Suspense } from 'react'
+import Loading from '@/components/loaders/loader'
 
-import React, { useEffect, useState, Suspense } from "react";
-import { Card, CardHeader, CardBody, CardFooter, Tabs, Tab } from "@nextui-org/react";
-import Register from "@/components/registrationform/resgister";
-import Login from "@/components/loginForm/login"
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+export default function AuthenticateUser(){
 
+return(
+  <Suspense fallback={<Loading></Loading>}>
+    <Authenticate></Authenticate>
+  </Suspense>
+)
 
-export default function Resgister() {
-  const [selectedTab, setSelectedTab] = useState("login")
-  const pathname = usePathname()
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
-  const searchHandle = () =>{
-    if (searchParams.get('page') === "login") {
-      setSelectedTab('login')
-      router.push(`/authenticate?page=login`)
-    } else if (searchParams.get('page') === "register") {
-      setSelectedTab('register')
-      router.push(`/authenticate?page=register`)
-    }
-  }
-
-  useEffect(() => {
-    searchHandle()
-  }, [pathname, searchParams])
-
-  const handleTabChange = (tabKey: any) => {
-    setSelectedTab(tabKey.target.innerText)
-    router.push(`/authenticate?page=${tabKey.target.innerText}`)
-  }
-
-  return (
-    <div className="w-full flex flex-col items-center justify-center mx-auto my-4">
-      <Suspense fallback={<p>Loading feed...</p>}>
-        <Tabs selectedKey={selectedTab} onClick={handleTabChange}>
-          <Tab key="login" title="login">
-            <Card className="w-96">
-              <Login></Login>
-            </Card>
-          </Tab>
-          <Tab key="register" title="register">
-            <Card className="w-96">
-              <Register></Register>
-            </Card>
-          </Tab>
-        </Tabs>
-      </Suspense>
-
-    </div>
-  );
 }
