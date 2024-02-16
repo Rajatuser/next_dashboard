@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 # ARG CACHE_DATE=2016-01-01
-RUN npm install
+RUN npm cache clean --force && npm install
 # RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
